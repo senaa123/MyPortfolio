@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Senan Jayasinghe - Skills</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000002;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+
+    .skills-container {
+      padding: 80px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .skills-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .skills-header h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      background: white;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .skills-header p {
+      color: #b0b0b0;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .skills-categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .category-btn {
+      padding: 12px 25px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: all 0.6s ease;
+    }
+
+    .category-btn:hover::before {
+      left: 100%;
+    }
+
+    .category-btn.active {
+      background: linear-gradient(90deg, #833ab4, #fd1d1d);
+      box-shadow: 0 4px 15px rgba(131, 58, 180, 0.3);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .skill-card {
+      background: rgba(30, 30, 35, 0.7);
+      border-radius: 10px;
+      padding: 25px;
+      transition: all 0.4s ease;
+      transform: translateY(20px);
+      opacity: 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .skill-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px) !important;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .skill-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .skill-card:hover .skill-icon {
+      transform: scale(1.1);
+    }
+
+    .skill-name {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .skill-level {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .skill-level-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #833ab4, #fd1d1d);
+      border-radius: 3px;
+      transition: width 1s ease;
+      width: 0;
+    }
+
+    .skill-description {
+      color: #b0b0b0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .skills-categories {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Animation delays for cards */
+    .skill-card:nth-child(1) { animation-delay: 0.1s; }
+    .skill-card:nth-child(2) { animation-delay: 0.2s; }
+    .skill-card:nth-child(3) { animation-delay: 0.3s; }
+    .skill-card:nth-child(4) { animation-delay: 0.4s; }
+    .skill-card:nth-child(5) { animation-delay: 0.5s; }
+    .skill-card:nth-child(6) { animation-delay: 0.6s; }
+    .skill-card:nth-child(7) { animation-delay: 0.7s; }
+    .skill-card:nth-child(8) { animation-delay: 0.8s; }
+    .skill-card:nth-child(9) { animation-delay: 0.9s; }
+    .skill-card:nth-child(10) { animation-delay: 1.0s; }
+  </style>
+</head>
+<body>
+    
+<div id="header-container"></div>
+
+
+  <script>
+  fetch('Header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-container').innerHTML = data;
+    });
+</script>
+
+  <section class="skills-container" id="skills">
+    <div class="skills-header">
+      <h1>My Skills</h1>
+      <p>Here's a comprehensive overview of my technical skills across different domains. Each skill is rated based on my proficiency level and experience.</p>
+    </div>
+
+    <div class="skills-categories">
+      <button class="category-btn active" data-category="all">All Skills</button>
+      <button class="category-btn" data-category="languages">Languages</button>
+      <button class="category-btn" data-category="frontend">Frontend</button>
+      <button class="category-btn" data-category="backend">Backend</button>
+      <button class="category-btn" data-category="database">Database</button>
+      <button class="category-btn" data-category="tools">Tools</button>
+    </div>
+
+    <div class="skills-grid">
+      <!-- Languages -->
+      <div class="skill-card" data-category="languages">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skill-icon" alt="Python">
+        <h3 class="skill-name">Python</h3>
+        <div class="skill-level">
+          <div class="skill-level-bar" data-level="90"></div>
+        </div>
+        <p class="skill-description">Advanced proficiency with experience in data analysis, machine learning, and automation.</p>
+      </div>
+
+      <div class="skill-card" data-category="languages">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="skill-icon" alt="Java">
+        <h3 class="skill-name">Java</h3>
+        <div class="skill-level">
+          <div class="skill-level-bar" data-level="80"></div>
+        </div>
+        <p class="skill-description">Strong OOP fundamentals with experience in application development.</p>
+      </div>
+      <!-- C# Skill Card -->
+<div class="skill-card" data-category="languages">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" class="skill-icon" alt="C#">
+  <h3 class="skill-name">C#</h3>
+  <div class="skill-level">
+    <div class="skill-level-bar" data-level="85"></div>
+  </div>
+  <p class="skill-description">Object-oriented programming, .NET framework, and application development.</p>
+</div>
+
+<!-- C++ Skill Card -->
+<div class="skill-card" data-category="languages">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="skill-icon" alt="C++">
+  <h3 class="skill-name">C++</h3>
+  <div class="skill-level">
+    <div class="skill-level-bar" data-level="80"></div>
+  </div>
+  <p class="skill-description">System programming, algorithms, and performance-critical applications.</p>
+</div>
+
+<!-- C Skill Card -->
+<div class="skill-card" data-category="languages">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="skill-icon" alt="C">
+  <h3 class="skill-name">C</h3>
+  <div class="skill-level">
+    <div class="skill-level-bar" data-level="75"></div>
+  </div>
+  <p class="skill-description">Low-level programming, embedded systems, and hardware interaction.</p>
+</div>
+
+      <!-- Frontend -->
+      <div class="skill-card" data-category="frontend">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="skill-icon" alt="HTML5">
+        <h3 class="skill-name">HTML5</h3>
+        <div class="skill-level">
+          <div class="skill-level-bar" data-level="95"></div>
+        </div>
+        <p class="skill-description">Semantic markup, accessibility standards, and modern HTML features.</p>
+      </div>
+
+      <div class="skill-card" data-category="frontend">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="skill-icon" alt="CSS3">
+        <h3 class="skill-name">CSS3</h3>
+        <div class="skill-level">
+          <div class="skill-level-bar" data-level="90"></div>
+        </div>
+        <p class="skill-description">Advanced styling, animations, Flexbox, Grid, and responsive design.</p>
+      </div>
+
+      <div class="skill-card" data-category="frontend">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="skill-icon" alt="JavaScript">
+        <h3 class="skill-name">JavaScript</h3>
+        <div class="skill-level">
+          <div class="skill-level-bar" data-level="85"></div>
+        </div>
+        <p class="skill-description">ES6+, DOM manipulation, async programming, and modern frameworks.</p>
+      </div>
+      <div class="skill-card" data-category="frontend">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="skill-icon" alt="React">
+  <h3 class="skill-name">React</h3>
+  <div class="skill-level">
+    <div class="skill-level-bar" data-level="85"></div>
+  </div>
+  <p class="skill-description">Building interactive UIs with React hooks, context API, and component-based architecture.</p>
+</div>
+
+<!-- Frontend: Bootstrap -->
+<div class="skill-card" data-category="frontend">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" class="skill-icon" alt="Bootstrap">
+  <h3 class="skill-name">Bootstrap</h3>
+  <div class="skill-level">
+    <div class="skill-level-bar" data-level="90"></div>
+  </div>
+  <p class="skill-description">Rapid responsive design development using Bootstrap 5 framework and utilities.</p>
+</div>
+
+      <!-- Backend -->
+      <div class="skill-card" data-category="backend">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="skill-icon" alt="Node.js">
+        <h3 class="skill-name">Node.js</h3>
+        <div class="skill-level">
+          <div class="skill-level-bar" data-level="80"></div>
+        </div>
+        <p class="skill-description">Server-side JavaScript, Express.js, and REST API development.</p>
+      </div>
+
+      <div class="skill-card" data-category="backend">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" class="skill-icon" alt="Django">
+        <h3 class="skill-name">Django</h3>
+        <div class="skill-level">
+          <div class="skill-level-bar" data-level="75"></div>
+        </div>
+        <p class="skill-description">Python web framework with experience in full-stack development.</p>
+      </div>
+            <!-- Java Backend -->
+<div class="skill-card" data-category="backend">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="skill-icon" alt="Java Backend">
+  <h3 class="skill-name">Java Backend</h3>
+  <div class="skill-level">
+    <div class="skill-level-bar" data-level="85"></div>
+  </div>
+  <p class="skill-description">Spring Boot, REST APIs, microservices architecture, and enterprise application development.</p>
+</div>
+
+<!-- MERN Stack -->
+<div class="skill-card" data-category="backend">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="skill-icon" alt="MERN Stack">
+  <h3 class="skill-name">MERN Stack</h3>
+  <div class="skill-level">
+    <div class="skill-level-bar" data-level="80"></div>
+  </div>
+  <p class="skill-description">Full-stack development with MongoDB, Express.js, React, and Node.js.</p>
+</div>
+
+<!-- .NET -->
+<div class="skill-card" data-category="backend">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" class="skill-icon" alt=".NET">
+  <h3 class="skill-name">.NET</h3>
+  <div class="skill-level">
+    <div class="skill-level-bar" data-level="75"></div>
+  </div>
+  <p class="skill-description">ASP.NET Core development, C# backend services, and enterprise solutions.</p>
+</div>
+
+<!-- PHP -->
+<div class="skill-card" data-category="backend">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="skill-icon" alt="PHP">
+  <h3 class="skill-name">PHP</h3>
+  <div class="skill-level">
+    <div class="skill-level-bar" data-level="70"></div>
+  </div>
+  <p class="skill-description">Laravel framework, WordPress development, and server-side scripting.</p>
+</div>
+
+      <!-- Database -->
+      <div class="skill-card" data-category="database">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="skill-icon" alt="MySQL">
+        <h3 class="skill-name">MySQL</h3>
+        <div class="skill-level">
+          <div class="skill-level-bar" data-level="85"></div>
+        </div>
+        <p class="skill-description">Database design, queries, optimization, and administration.</p>
+      </div>
+
+      <div class="skill-card" data-category="database">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="skill-icon" alt="MongoDB">
+        <h3 class="skill-name">MongoDB</h3>
+        <div class="skill-level">
+          <div class="skill-level-bar" data-level="70"></div>
+        </div>
+        <p class="skill-description">NoSQL database with experience in document-based storage.</p>
+      </div>
+      <!-- Database: T-SQL -->
+<div class="skill-card" data-category="database">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" class="skill-icon" alt="T-SQL">
+  <h3 class="skill-name">T-SQL</h3>
+  <div class="skill-level">
+    <div class="skill-level-bar" data-level="80"></div>
+  </div>
+  <p class="skill-description">Microsoft SQL Server, complex queries, stored procedures, and database optimization.</p>
+</div>
+
+      <!-- Tools -->
+      <div class="skill-card" data-category="tools">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="skill-icon" alt="Git">
+        <h3 class="skill-name">Git</h3>
+        <div class="skill-level">
+          <div class="skill-level-bar" data-level="90"></div>
+        </div>
+        <p class="skill-description">Version control, branching strategies, and collaboration workflows.</p>
+      </div>
+
+      <div class="skill-card" data-category="tools">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="skill-icon" alt="Docker">
+        <h3 class="skill-name">Docker</h3>
+        <div class="skill-level">
+          <div class="skill-level-bar" data-level="65"></div>
+        </div>
+        <p class="skill-description">Containerization and deployment of applications.</p>
+      </div>
+      <div class="skill-card" data-category="tools">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="skill-icon" alt="Linux">
+  <h3 class="skill-name">Linux</h3>
+  <div class="skill-level">
+    <div class="skill-level-bar" data-level="75"></div>
+  </div>
+  <p class="skill-description">System administration, shell scripting, and server management in Linux environments.</p>
+</div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animate skill cards on page load
+      const skillCards = document.querySelectorAll('.skill-card');
+      
+      skillCards.forEach(card => {
+        // Make card visible
+        card.classList.add('visible');
+        
+        // Animate skill level bars
+        const levelBar = card.querySelector('.skill-level-bar');
+        const level = levelBar.getAttribute('data-level');
+        levelBar.style.width = level + '%';
+      });
+
+      // Filter skills by category
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Update active button
+          categoryButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          const category = button.dataset.category;
+          filterSkills(category);
+        });
+      });
+
+      function filterSkills(category) {
+        const allSkills = document.querySelectorAll('.skill-card');
+        
+        allSkills.forEach(skill => {
+          if (category === 'all' || skill.dataset.category === category) {
+            skill.style.display = 'block';
+          } else {
+            skill.style.display = 'none';
+          }
+        });
+      }
+
+      // Intersection Observer for scroll animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            
+            // Animate skill level bars when they come into view
+            const levelBar = entry.target.querySelector('.skill-level-bar');
+            if (levelBar) {
+              const level = levelBar.getAttribute('data-level');
+              levelBar.style.width = level + '%';
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+
+      // Observe all skill cards
+      skillCards.forEach(card => {
+        observer.observe(card);
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Senan Jayasinghe - Contact</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000002;
+      color: #fff;
+      scroll-behavior: smooth;
+      padding-top: 80px;
+    }
+
+    .contact-container {
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .contact-header h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #833ab4, #fd1d1d, #fcb045);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .contact-header p {
+      color: #b0b0b0;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .contact-content {
+      display: flex;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-card {
+      background: rgba(30, 30, 35, 0.7);
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 30px;
+      transition: all 0.4s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 20px;
+      background: rgba(131, 58, 180, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .contact-card h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #833ab4, #fd1d1d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    
+  .contact-email, .contact-phone {
+    color: #b0b0b0;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 0;
+    position: relative;
+  }
+
+  .contact-email::after, .contact-phone::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, #833ab4, #fd1d1d);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-email:hover, .contact-phone:hover {
+    color: #fff;
+    background: transparent;
+    border-color: transparent;
+  }
+
+  .contact-email:hover::after, .contact-phone:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .form-group:nth-child(1) { animation-delay: 0.2s; }
+    .form-group:nth-child(2) { animation-delay: 0.3s; }
+    .form-group:nth-child(3) { animation-delay: 0.4s; }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #b0b0b0;
+      font-weight: 500;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #833ab4;
+      box-shadow: 0 0 0 2px rgba(131, 58, 180, 0.3);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      padding: 12px 30px;
+      background: linear-gradient(90deg, #833ab4, #fd1d1d);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(131, 58, 180, 0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(131, 58, 180, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .contact-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .contact-info, .contact-form {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-container"></div>
+
+
+  <script>
+  fetch('Header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-container').innerHTML = data;
+    });
+</script>
+
+  <section class="contact-container" id="contact">
+    <div class="contact-header">
+      <h1>Contact Me</h1>
+      <p>Feel free to reach out for collaborations or just to say hello. I'll get back to you as soon as possible.</p>
+    </div>
+
+    <div class="contact-content">
+      <div class="contact-info">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#833ab4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <h3>Email</h3><br>
+          <a href="mailto:www.senandulneth@gmail.com" class="contact-email">www.senandulneth@gmail.com</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#833ab4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <h3>Phone</h3><br>
+          <a href="tel:+94714242312" class="contact-phone">+94 71 424 2312</a>
+        </div>
+      </div>
+
+      <form class="contact-form" action="https://formspree.io/f/mldnybnz" method="POST">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <button type="submit" class="submit-btn">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    // Animation for contact cards
+    const contactCards = document.querySelectorAll('.contact-card');
+    contactCards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.animation = `fadeInUp 0.6s ease forwards ${index * 0.2 + 0.2}s`;
+    });
+
+    // Form submission handling
+    const form = document.querySelector('.contact-form');
+    form.addEventListener('submit', function(e) {
+      const submitBtn = form.querySelector('.submit-btn');
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+    });
+  </script>
+
+</body>
+</html>
